@@ -12,11 +12,13 @@ function Joke({ joke }) {
   };
 
   return (
-    <div className="flex items-center">
+    <div className="flex items-center border  pl-2">
       <div className="font-semibold">{joke.joke}</div>
       <div className="flex flex-col items-center">
         <GoChevronUp onClick={handelUpvote} />
-        <span className="rounded-full bg-green-300 m-2 inline-block w-10 text-center">
+        <span
+          className={`rounded-full bg-green-300 m-2 inline-block w-10 text-center`}
+        >
           {votes}
         </span>{" "}
         <GoChevronDown onClick={handleDownvote} />{" "}
