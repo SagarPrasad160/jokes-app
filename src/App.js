@@ -1,23 +1,30 @@
-import { useEffect, useState } from "react";
-import Joke from "./components/Joke";
+import JokesList from "./components/JokesList";
+import { useState, useEffect } from "react";
+
 import { fetchJokes } from "./api";
 
 function App() {
   const [jokes, setJokes] = useState([]);
-
   const [pressed, setPressed] = useState(false);
+
+  const handleClick = () => {
+    setPressed(!pressed);
+  };
 
   useEffect(() => {
     async function getJokes() {
       const fetchedJokes = await fetchJokes();
-      setJokes(fetchedJokes); // Take the first 10 jokes
+      const mappedJokes = fetchedJokes.map((joke) => ({ ...joke, votes: 0 }));
+      setJokes(mappedJokes); // Take the first 10 jokes
     }
     getJokes();
   }, [pressed]);
 
-  const handleClick = () => {
-    setPressed((prev) => !prev);
+  const updateJokes = (updatedJokes) => {
+    setJokes(updatedJokes);
   };
+
+  const sortedJokes = jokes.sort((a, b) => b.votes - a.votes);
 
   return (
     <div className="p-5 w-3/4 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white mx-auto shadow">
@@ -30,12 +37,7 @@ function App() {
           New Jokes
         </button>
       </div>
-
-      {jokes.length > 0 ? (
-        jokes.map((joke) => <Joke key={joke.id} joke={joke} />)
-      ) : (
-        <p>Loading jokes...</p>
-      )}
+      <JokesList jokes={sortedJokes} updateJokes={updateJokes} />
     </div>
   );
 }
