@@ -29,10 +29,10 @@ function App() {
   return (
     <div className="p-5 w-3/4 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white mx-auto shadow">
       <div className="flex justify-between mb-1">
-        <h1 className="font-bold text-2xl">Dad Jokes App</h1>
+        <h1 className="font-bold text-3xl">Dad Jokes App</h1>
         <button
           onClick={handleClick}
-          className="p-1 rounded bg-gradient-to-r from-emerald-400 to-cyan-400 transition-transform duration-100 transform active:translate-x-0.5 active:-translate-y-0.5"
+          className="p-1 rounded text-lg bg-gradient-to-r from-emerald-400 to-cyan-400 transition-transform duration-100 transform active:translate-x-0.5 active:-translate-y-0.5"
         >
           New Jokes
         </button>
